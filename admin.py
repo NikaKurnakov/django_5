@@ -6,6 +6,15 @@ from .models import Flat
 
 
 class FlatAdmin(admin.ModelAdmin):
-    list_display = ('address', 'town', 'owner')
     search_fields = ['town', 'address', 'owner']
     list_filter = ('town',)
+    list_display = ('address', 'town', 'created_at')
+    readonly_fields = ('created_at',)
+    fieldsets = (
+        (None, {
+            'fields': ('town', 'address', 'owner', 'construction_year')
+        }),
+        (None, {
+            'fields': ('created_at',),
+        }),
+    )
